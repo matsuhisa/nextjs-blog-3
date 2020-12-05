@@ -1,14 +1,23 @@
 import { GetStaticProps, GetStaticPaths } from 'next'
 
-const PostDetail = ({ params }) => {
-  console.table(params)
+// type Props = {
+//   title: String
+//   id: number
+// }
+
+const SamplePostDetail = ({ data, foo }) => {
+  console.log('------')
+  console.table(data)
+  console.table(foo)
+  console.log('------')
   return (
     <>
-      {params.id}
+      {data.title}
+      {data.id}
     </>
   )
 }
-export default PostDetail
+export default SamplePostDetail
 
 export const getStaticPaths: GetStaticPaths = async () => {
   // Return a list of possible value for id => 利用可能なidを返す
@@ -26,9 +35,15 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 }
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  return {
-    props: { params }
+  const data = {
+    title: `タイトル => ${params?.id}`,
+    id: Number(params?.id)
   }
+  const foo = { hoge: 'foobar' }
+
+  console.log(data)
+  console.log(foo)
+  return { props: { data, foo } }
 }
 // export async function getStaticProps(params) {
 //   // Fetch necessary data for the blog post using params.id

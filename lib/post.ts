@@ -4,6 +4,7 @@ import matter from 'gray-matter'
 import remark from 'remark'
 import html from 'remark-html'
 import gfm from 'remark-gfm'
+import highlight from 'remark-highlight.js'
 
 const postsDirectory: string = path.join(process.cwd(), 'posts')
 
@@ -37,6 +38,7 @@ export const getPostData = async (id: String[]) => {
 
   const processedContent = await remark()
     .use(gfm)
+    .use(highlight)
     .use(html)
     .process(matterResult.content)
   const contentHtml = processedContent.toString()

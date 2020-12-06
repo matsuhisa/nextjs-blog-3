@@ -5,7 +5,9 @@ import { getAllPostIds, getPostData } from '../../lib/post'
 const PostDetail = (data: Post) => {
   return (
     <>
-      {data.title}
+      <h1>{data.title}</h1>
+      <h2>本文</h2>
+      <div className="foo" dangerouslySetInnerHTML={{ __html: data.contentHtml }} />
     </>
   )
 }

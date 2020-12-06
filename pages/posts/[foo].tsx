@@ -36,8 +36,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const data = {
-    title: `タイトル => ${params?.id}`,
-    id: Number(params?.id)
+    title: `タイトル => ${params?.foo}`,
+    id: Number(params?.foo)
   }
   const foo = { hoge: 'foobar' }
 

@@ -8,3 +8,10 @@ export type User = {
   id: number
   name: string
 }
+
+export type Post = {
+  id: String[]
+  title?: String
+  date?: String
+  contentHtml?: String
+}

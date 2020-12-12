@@ -1,10 +1,14 @@
 import { GetStaticProps, GetStaticPaths } from 'next'
+import Title from '../../components/a/Title'
+
+
 import { Post } from '../../interfaces'
 import { getAllPostIds, getPostData } from '../../lib/post'
 
 const PostDetail = (data: Post) => {
   return (
     <>
+      <Title></Title>
       <h1>{data.title}</h1>
       <h2>本文</h2>
       <div className="foo" dangerouslySetInnerHTML={{ __html: data.contentHtml }} />

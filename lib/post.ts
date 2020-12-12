@@ -14,7 +14,8 @@ export const getAllPostIds = () => {
     const dirs = []
     for (const dirent of dirents) {
       if (dirent.isDirectory()) dirs.push(`${dir}/${dirent.name}`)
-      if (dirent.isFile()) files.push(`${dir}/${dirent.name}`.replace(path.join(process.cwd(), 'posts/'), ''))
+      if (dirent.isFile())
+        files.push(`${dir}/${dirent.name}`.replace(path.join(process.cwd(), 'posts/'), ''))
     }
     for (const d of dirs) {
       files = fileNames(d, files)
@@ -22,11 +23,11 @@ export const getAllPostIds = () => {
     return files
   }
 
-  return fileNames(postsDirectory).map(fileName => {
+  return fileNames(postsDirectory).map((fileName) => {
     return {
       params: {
-        id: fileName.replace(/\.md$/, '').split('/')
-      }
+        id: fileName.replace(/\.md$/, '').split('/'),
+      },
     }
   })
 }
@@ -46,8 +47,6 @@ export const getPostData = async (id: String[]) => {
   return {
     id,
     contentHtml,
-    ...matterResult.data
+    ...matterResult.data,
   }
 }
-
-

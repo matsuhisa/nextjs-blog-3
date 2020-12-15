@@ -1,8 +1,5 @@
 import { GetStaticProps, GetStaticPaths } from 'next'
-import { ParsedUrlQuery } from 'querystring'
 import Title from '../../components/a/Title'
-
-
 import { Post } from '../../interfaces'
 import { getAllPostIds, getPostData } from '../../lib/post'
 

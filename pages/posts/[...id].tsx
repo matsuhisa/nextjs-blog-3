@@ -1,4 +1,5 @@
 import { GetStaticProps, GetStaticPaths } from 'next'
+import { ParsedUrlQuery } from 'querystring'
 import Title from '../../components/a/Title'
 
 
@@ -25,6 +26,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const data = await getPostData(params?.id)
+  let data = {}
+  if(params?.id != undefined && typeof(params?.id) !== 'string'){
+    data = await getPostData(params?.id)
+  }
   return { props: data }
 }

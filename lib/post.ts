@@ -32,7 +32,7 @@ export const getAllPostIds = () => {
   })
 }
 
-export const getPostData = async (id: String[]) => {
+export const getPostData = async (id: string[]) => {
   const fullPath = path.join(postsDirectory, `${id.join('/')}.md`)
   const fileContents = fs.readFileSync(fullPath, 'utf8')
   const matterResult = matter(fileContents)

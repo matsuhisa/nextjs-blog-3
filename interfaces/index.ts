@@ -10,8 +10,8 @@ export type User = {
 }
 
 export type Post = {
-  id: String[]
-  title?: String
-  date?: String
-  contentHtml?: String
+  id: string[]
+  title?: string
+  date?: string
+  contentHtml: string
 }

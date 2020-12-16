@@ -8,7 +8,7 @@ const PostDetail = (data: Post) => {
     <>
       <Title></Title>
       <h1>{data.title}</h1>
-      <h2>本文</h2>
+      <h2>本文はじまります</h2>
       <div className="foo" dangerouslySetInnerHTML={{ __html: data.contentHtml }} />
     </>
   )
@@ -24,7 +24,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   let data = {}
-  if(params?.id != undefined && typeof(params?.id) !== 'string'){
+  if (params?.id != undefined && typeof (params?.id) !== 'string') {
     data = await getPostData(params?.id)
   }
   return { props: data }

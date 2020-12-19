@@ -8,7 +8,7 @@ const PostDetail = (data: Post) => {
     <>
       <Title></Title>
       <h1>{data.title}</h1>
-      <h2>本文</h2>
+      <h2>本文です</h2>
       <div className="foo" dangerouslySetInnerHTML={{ __html: data.contentHtml }} />
     </>
   )

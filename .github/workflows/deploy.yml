@@ -1,9 +1,9 @@
 name: CD
 on:
   push:
-    branches: [ master ]
-#   pull_request:
-#     branches: [ master ]
+    branches: [master]
+  #   pull_request:
+  #     branches: [ master ]
   workflow_dispatch:
 jobs:
   build:
@@ -16,7 +16,12 @@ jobs:
       - run: npm install -g yarn
       - run: yarn install --frozen-lockfile
       - run: yarn export
-
+      - uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-1
+      - run: aws s3 sync ./out s3://matsuhisa-next.js.blog
 #       - name: Run a one-line script
 #         run: echo Hello, world!
 #       - name: Run a multi-line script

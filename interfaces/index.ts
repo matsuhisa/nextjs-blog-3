@@ -11,7 +11,7 @@ export type User = {
 
 export type Post = {
   id: string[]
-  title?: string
+  title: string
   date?: string
   contentHtml: string
 }

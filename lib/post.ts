@@ -64,6 +64,21 @@ export const getAllYearMonths = () => {
   return postDirectories(postsDirectory)
 }
 
+export const getAllYears = () => {
+  const directories: { params: { year: string } }[] = []
+  const postDirectories = (directory: string) => {
+    const readDirectories = fs.readdirSync(directory, { withFileTypes: true })
+    readDirectories.forEach((result) => {
+      if (result.isDirectory()) {
+        directories.push({ params: { year: result.name } })
+      }
+    })
+    return directories
+  }
+
+  return postDirectories(postsDirectory)
+}
+
 export const getPostData = async (id: string[] | any[]) => {
   const fullPath = path.join(postsDirectory, `${id.join('/')}.md`)
   const fileContents = fs.readFileSync(fullPath, 'utf8')

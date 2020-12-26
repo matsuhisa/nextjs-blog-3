@@ -6,7 +6,8 @@
     "build": "next build",
     "export": "next build && next export",
     "start": "next start",
-    "type-check": "tsc"
+    "type-check": "tsc",
+    "tsc": "tsc --esModuleInterop"
   },
   "dependencies": {
     "gray-matter": "^4.0.2",

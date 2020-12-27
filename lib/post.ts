@@ -8,19 +8,16 @@ const highlight = require('remark-highlight.js')
 
 const postsDirectory: string = path.join(process.cwd(), 'posts')
 
-// export const getYearMonthPath = (year: string, month: string) => {
-//   try {
-//     fs.accessSync(`${postsDirectory}/${year}/${month}`)
-//     return {
-//       params: {
-//         year: year,
-//         month: month,
-//       },
-//     }
-//   } catch (error) {
-//     return null
-//   }
-// }
+export const getYearMonthPostIds = (year: string, month: string) => {
+  const ids: string[][] = []
+  const readDirectories = fs.readdirSync(`${postsDirectory}/${year}/${month}`, { withFileTypes: true })
+  readDirectories.forEach((result) => {
+    if (result.isFile()) {
+      ids.push([year, month, result.name.replace(/\.md$/, '')])
+    }
+  })
+  return ids
+}
 
 export const getAllPostIds = () => {
   const fileNames = (dir: string, files: Array<String> = []) => {
@@ -92,4 +89,21 @@ export const getPostData = async (id: string[] | any[]) => {
     contentHtml,
     ...matterResult.data,
   }
+}
+
+export const getPostsData = async (ids: any[][]) => {
+  return ids.map((id: any[]) => {
+    const fullPath = path.join(postsDirectory, `${id.join('/')}.md`)
+    const fileContents = fs.readFileSync(fullPath, 'utf8')
+    const matterResult = matter(fileContents)
+
+    const processedContent = remark().use(gfm).use(highlight).use(html).process(matterResult.content)
+    const contentHtml = processedContent.toString()
+
+    return {
+      id,
+      contentHtml,
+      ...matterResult.data,
+    }
+  })
 }

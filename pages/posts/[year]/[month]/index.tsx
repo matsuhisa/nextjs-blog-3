@@ -12,7 +12,7 @@ type monthYearProps = {
 const MonthIndex = (data: monthYearProps) => {
   return(
     <>
-      <h1>{data.year}年{data.month}月別</h1>
+      <h1>{data.year}年{data.month}月別（{data.posts.length}件）</h1>
       <dl>
         {data.posts.map((post: Post) => (
           <>
@@ -51,28 +51,4 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   } else {
     return { props: {} }
   }
-  // try {
-  //   const year: string = params?.year.toString()
-  //   const month: string = params?.month.toString()
-  //   const postIds = getYearMonthPostIds(year, month)
-  //   const posts = await getPostsData(postIds)
-
-  //   const data = {
-  //     year: year,
-  //     month: month,
-  //     posts: posts,
-  //   }
-  //   return { props: data }
-  // } catch (error) {
-  //   return { props: { errors: error.message } }
-  // }
-  // const postIds = getYearMonthPostIds(params.year, params.month)
-  // let posts: Post[] = await getPostsData(postIds)
-
-  // const data = {
-  //   year: params?.year,
-  //   month: params?.month,
-  //   posts: posts,
-  // }
-  // return { props: data }
 }

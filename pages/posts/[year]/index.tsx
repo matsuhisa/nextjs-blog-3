@@ -1,8 +1,10 @@
 import { GetStaticProps, GetStaticPaths } from 'next'
+import { Post } from '../../../interfaces'
 import { getAllYears } from '../../../lib/post'
 
 type yearPorps = {
   year: string,
+  posts: Post[],
 }
 
 const YearIndex = (data: yearPorps) => {
